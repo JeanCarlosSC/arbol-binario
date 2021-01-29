@@ -1,6 +1,6 @@
 package lib.sRAD.gui.tool
 
-import lib.sRAD.gui.resource.Resource.*
+import lib.sRAD.gui.component.Resource.*
 import java.awt.*
 import javax.swing.*
 import javax.swing.border.Border

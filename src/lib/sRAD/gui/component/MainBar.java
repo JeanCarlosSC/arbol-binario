@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import static lib.sRAD.gui.resource.Resource.*;
+import static lib.sRAD.gui.component.Resource.*;
 
 public class MainBar extends SPanel {
 

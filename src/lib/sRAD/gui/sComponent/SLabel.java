@@ -3,8 +3,8 @@ package lib.sRAD.gui.sComponent;
 import javax.swing.*;
 import java.awt.*;
 
-import static lib.sRAD.gui.resource.Resource.darkWhite;
-import static lib.sRAD.gui.resource.Resource.fontText;
+import static lib.sRAD.gui.component.Resource.darkWhite;
+import static lib.sRAD.gui.component.Resource.fontText;
 
 public class SLabel extends JLabel {
 

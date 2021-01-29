@@ -1,7 +1,6 @@
 package lib.sRAD.gui.tool
 
-import lib.sRAD.gui.resource.*
-import lib.sRAD.gui.resource.Resource.*
+import lib.sRAD.gui.component.Resource.*
 import java.awt.*
 import java.awt.geom.Area
 import java.awt.geom.Ellipse2D

@@ -2,7 +2,7 @@ package lib.sRAD.gui.component;
 
 import java.awt.*;
 
-import static lib.sRAD.gui.resource.Resource.*;
+import static lib.sRAD.gui.component.Resource.*;
 
 
 public class Theme {

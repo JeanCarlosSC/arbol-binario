@@ -4,8 +4,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-import static lib.sRAD.gui.resource.Resource.semiDarkGray2Border;
-import static lib.sRAD.gui.resource.Resource.semiDarkGrayBlue;
+import static lib.sRAD.gui.component.Resource.semiDarkGray2Border;
+import static lib.sRAD.gui.component.Resource.semiDarkGrayBlue;
 
 public class SPanel extends JPanel {
 

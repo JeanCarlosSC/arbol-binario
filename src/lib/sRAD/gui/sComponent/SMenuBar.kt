@@ -1,6 +1,6 @@
 package lib.sRAD.gui.sComponent
 
-import lib.sRAD.gui.resource.Resource.*
+import lib.sRAD.gui.component.Resource.*
 import javax.swing.JMenuBar
 import java.awt.Graphics
 import javax.swing.JMenu

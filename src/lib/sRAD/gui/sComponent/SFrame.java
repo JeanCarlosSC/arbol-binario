@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-import static lib.sRAD.gui.resource.Resource.blackBorderTransparent;
+import static lib.sRAD.gui.component.Resource.blackBorderTransparent;
 
 public class SFrame extends JFrame {
 

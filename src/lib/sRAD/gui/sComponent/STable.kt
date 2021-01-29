@@ -1,7 +1,6 @@
 package lib.sRAD.gui.sComponent
 
-import lib.sRAD.gui.resource.*
-import lib.sRAD.gui.resource.Resource.*
+import lib.sRAD.gui.component.Resource.*
 import lib.sRAD.gui.tool.*
 import java.awt.Color
 import java.awt.Dimension
