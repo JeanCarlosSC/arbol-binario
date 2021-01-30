@@ -4,7 +4,7 @@ import lib.sRAD.gui.sComponent.SFrame;
 
 public class VentanaEmergente extends SFrame {
 
-    private SFrame frame;
+    private final SFrame frame;
 
     public VentanaEmergente(SFrame frame, int width, int height) {
         this.frame = frame;

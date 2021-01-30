@@ -1,7 +1,6 @@
 package app
 
 import lib.sRAD.gui.component.Resource.*
-import lib.sRAD.gui.component.Theme
 import lib.sRAD.gui.component.VentanaEmergente
 import lib.sRAD.gui.sComponent.*
 import lib.sRAD.logic.isInt
@@ -12,7 +11,7 @@ import javax.swing.JOptionPane
 
 abstract class Grafica: SScrollPane() {
     val arbol = ArbolBinario()
-    val lineas = mutableListOf<MutableList<Int>>()//coordenadas de las lineas por dibujar
+    private val lineas = mutableListOf<MutableList<Int>>()//coordenadas de las lineas por dibujar
 
     private val pInterno = object: SPanel(0, 0, 706, 610) {
         override fun paint(g: Graphics?) {
@@ -21,7 +20,7 @@ abstract class Grafica: SScrollPane() {
 
             if(lineas.isNotEmpty()){
                 for (i in lineas) {
-                    g!!.drawLine(i[0], i[1], i[2], i[3])
+                    g.drawLine(i[0], i[1], i[2], i[3])
                 }
             }
         }
@@ -52,7 +51,7 @@ abstract class Grafica: SScrollPane() {
         setProperties(2, 2, 716, 620)
     }
 
-    fun addVertice() {
+    private fun addVertice() {
         abrirVentanaInsertar()
     }
 
@@ -85,7 +84,7 @@ abstract class Grafica: SScrollPane() {
         return
     }
 
-    fun actualizar() {
+    private fun actualizar() {
         pInterno.removeAll()
         lineas.clear()
         if(!arbol.isEmpty()) {
@@ -95,7 +94,7 @@ abstract class Grafica: SScrollPane() {
         pInterno.repaint()
     }
 
-    fun dibujar(nodo: NodoBinario?) {
+    private fun dibujar(nodo: NodoBinario?) {
         if(nodo!=null) {
             //modifica tamaño del panel
             if(nodo.x+100>pInterno.width) {

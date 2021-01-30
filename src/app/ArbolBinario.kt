@@ -43,12 +43,48 @@ class ArbolBinario {
         }
     }
 
+    fun retirar(valor: Int) {
+
+    }
+
+    fun inOrden(nodo: NodoBinario?): String {
+        return ""
+    }
+
+    fun preOrden(nodo: NodoBinario?): String {
+        return ""
+    }
+
+    fun posOrden(nodo: NodoBinario?): String {
+        return ""
+    }
+
+    fun niveles(nodo: NodoBinario?): String {
+        return ""
+    }
+
+    fun gordura(nodo: NodoBinario?): String {
+        return ""
+    }
+
+    fun altura(nodo: NodoBinario?): String {
+        return ""
+    }
+
     private fun estaEnArbol(nodo: NodoBinario?, valor: Int): Boolean {
         if(nodo == null)
             return false
         if (nodo.valor==valor)
             return true
         return estaEnArbol(nodo.izquierda, valor) || estaEnArbol(nodo.derecha, valor)
+    }
+
+    fun completo(nodo: NodoBinario?): Boolean {
+        return false
+    }
+
+    fun numeroDeHojas(): Int {
+        return 0
     }
 
     private fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
