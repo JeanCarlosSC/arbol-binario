@@ -17,8 +17,8 @@ public class VentanaEmergente extends SFrame {
     }
 
     public void cerrar() {
-        setVisible(false);
         frame.setEnabled(true);
+        this.setVisible(false);
     }
 
 }

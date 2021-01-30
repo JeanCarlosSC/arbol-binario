@@ -22,12 +22,3 @@ fun JTextArea.setProperties(x: Int, y: Int, width: Int, height: Int, editable: B
     this.lineWrap = lineWrap
     this.alignmentX = hAlignment
 }
-
-//JScrollPane----------------------------------------------------------------------------------------
-fun JScrollPane.setProperties(x: Int, y: Int, width: Int, height: Int, background: Color? = semiDarkGrayBlue, border: Border? = semiDarkGray2Border){
-    this.setBounds(x, y, width, height)
-    this.verticalScrollBar.setUI(getCustomScroll())
-    this.horizontalScrollBar.setUI(getCustomScroll())
-    this.background = background
-    this.border = border
-}

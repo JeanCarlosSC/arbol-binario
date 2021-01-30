@@ -25,6 +25,11 @@ public class SPanel extends JPanel {
         setProperties(x, y, width, height, background, border, layout);
     }
 
+    public void setSize(int width, int height) {
+        super.setSize(width, height);
+        setPreferredSize(new Dimension(width, height));
+    }
+
     public void setProperties(int x, int y, int width, int height) {
         setProperties(x, y, width, height, semiDarkGrayBlue, semiDarkGray2Border, null);
     }
