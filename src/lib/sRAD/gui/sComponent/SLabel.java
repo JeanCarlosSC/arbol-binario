@@ -8,13 +8,17 @@ import static lib.sRAD.gui.component.Resource.fontText;
 
 public class SLabel extends JLabel {
 
+//DEFAULT LABEL
+
+    /**
+     * default
+     */
     public SLabel(){
         super();
     }
 
-    /**
-     * icon label
-     */
+//ICON LABEL
+
     public SLabel (int x, int y, ImageIcon icon) {
         setProperties(x, y, icon, null);
     }
@@ -22,11 +26,10 @@ public class SLabel extends JLabel {
         setProperties(x, y, icon, cursor);
     }
 
-    /**
-     * text label
-     */
-    public SLabel (int x, int y, int width) {
-        setProperties(x, y, width, 18, "", fontText, darkWhite, LEFT, null);
+//TEXT LABEL
+
+    public SLabel (int x, int y, int width, int height, String text) {
+        setProperties(x, y, width, height, text, fontText, darkWhite, LEFT, null);
     }
     public SLabel (int x, int y, int width, int height, String text, Font font, Color foreground, int hAlignment, Color background) {
         setProperties(x , y, width, height, text, font, foreground, hAlignment, background);

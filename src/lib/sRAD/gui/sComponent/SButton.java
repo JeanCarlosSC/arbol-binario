@@ -1,5 +1,7 @@
 package lib.sRAD.gui.sComponent;
 
+import lib.sRAD.gui.component.Theme;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -24,15 +26,13 @@ public class SButton extends JButton {
         setProperties(x, y, icon, cursor);
     }
 
-    /**
-     * text button
-     */
-    public SButton(int x, int y, int width, int height) {
-        this(x, y, width, height, "", handCursor, fontTitleMini, darkGray, darkWhite, semiDarkGray2Border, "CENTER", true, semiDarkGray);
+//TEXT BUTTON
+    public SButton(int x, int y, int width, int height, String text) {
+        this(x, y, width, height, text, handCursor, fontTitleMini, Theme.bbg, darkWhite, semiDarkGray2Border, CENTER, true, semiDarkGray);
     }
     public SButton(int x, int y, int width, int height, String text, Cursor cursor, Font font, Color background, Color foreground, Border border,
-                   String hAlignment, Boolean isSolid, Color backgroundEntered ) {
-        setProperties(x, y, width, height, text, cursor, font, background, foreground, border, LEFT, isSolid, backgroundEntered);
+                   int hAlignment, Boolean isSolid, Color backgroundEntered ) {
+        setProperties(x, y, width, height, text, cursor, font, background, foreground, border, hAlignment, isSolid, backgroundEntered);
     }
 
     public void setProperties(int x, int y, int width, int height, String text, Cursor cursor, Font font, Color background, Color foreground,

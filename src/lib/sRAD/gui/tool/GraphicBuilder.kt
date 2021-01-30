@@ -23,21 +23,6 @@ fun JTextArea.setProperties(x: Int, y: Int, width: Int, height: Int, editable: B
     this.alignmentX = hAlignment
 }
 
-//JTextField-----------------------------------------------------------------------------------------
-fun JTextField.setProperties(x: Int, y: Int, width: Int, height: Int = 28, editable: Boolean = true, text: String? = "", foreground: Color? = darkWhite,
-                             background: Color? = darkGray, font: Font? = fontText, border: Border? = semiDarkGray2Border,
-                             hAlignment: Int = JTextField.LEFT) {
-    this.setBounds(x, y, width, height)
-    this.text = text
-    this.isEditable = editable
-    this.foreground = foreground
-    this.font = font
-    this.background = background
-    this.caretColor = foreground
-    this.border = border
-    this.horizontalAlignment = hAlignment
-}
-
 //JScrollPane----------------------------------------------------------------------------------------
 fun JScrollPane.setProperties(x: Int, y: Int, width: Int, height: Int, background: Color? = semiDarkGrayBlue, border: Border? = semiDarkGray2Border){
     this.setBounds(x, y, width, height)

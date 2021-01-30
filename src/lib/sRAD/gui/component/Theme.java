@@ -7,8 +7,11 @@ import static lib.sRAD.gui.component.Resource.*;
 
 public class Theme {
 
-    public static Color bg2 = darkGray; //background 2
-    public static Color bg3 = megaDarkGray; //background 3
-    public static Color f = gray; //font
+    public static Color bg2 = darkGray; //Background 2
+    public static Color bg3 = megaDarkGray; //Background 3
+    public static Color bbg = DTII2;//Button Background
+    public static Color vebg = DTII1;// Ventana Emergente Background
+    public static Color ft = darkWhite;//Foreground de texto
+    public static Color fmb = gray; //Foreground de main bar
 
 }

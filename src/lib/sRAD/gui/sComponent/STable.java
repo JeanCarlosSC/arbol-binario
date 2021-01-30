@@ -51,17 +51,17 @@ public class STable extends JScrollPane {
         tabla.setPreferredSize(new Dimension(cellWidth*matriz.get(0).size(), cellHeight*(matriz.size()-1)));
 
         JTableHeader header = tabla.getTableHeader();
-        header.setBackground(semiDarkGray2);
+        header.setBackground(DTII3);
         header.setReorderingAllowed(false);
         header.setSize(cellWidth*matriz.get(0).size(), 30);
         header.setPreferredSize(new Dimension(cellWidth*matriz.get(0).size(), 30));
-        header.setDefaultRenderer(getCustomTable(semiDarkGray2, null, null, white, fontText));
+        header.setDefaultRenderer(getCustomTable(DTII3, null, null, white, fontText));
 
         setViewportView(tabla);
         setLocation(x, y);
         setSize(width, height);
 
-        setBackground(semiDarkGray2);
+        setBackground(DTII3);
         viewport.setBackground(semiDarkGrayBlue);
         setBorder(semiDarkGray2Border);
         verticalScrollBar.setUI(getCustomScroll());
@@ -82,11 +82,11 @@ public class STable extends JScrollPane {
     }
 
     public void setProperties(JTable table, DefaultTableModel modelo) {
-        setProperties(table, modelo, semiDarkGray2, 40);
+        setProperties(table, modelo, DTII3, 40);
     }
 
     public void setProperties(JTable table, DefaultTableModel modelo, int rowHeight) {
-        setProperties(table, modelo, semiDarkGray2, rowHeight);
+        setProperties(table, modelo, DTII3, rowHeight);
     }
 
     public void setProperties(JTable table, DefaultTableModel modelo, Color gridColor, int rowHeight) {

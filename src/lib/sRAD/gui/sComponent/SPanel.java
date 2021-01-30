@@ -9,6 +9,10 @@ import static lib.sRAD.gui.component.Resource.semiDarkGrayBlue;
 
 public class SPanel extends JPanel {
 
+    public SPanel(int x, int y, int width, int height) {
+        setProperties(x, y, width, height);
+    }
+
     public SPanel() {
         this(0, 0, 0, 0, semiDarkGrayBlue, semiDarkGray2Border, null);
     }
@@ -21,8 +25,8 @@ public class SPanel extends JPanel {
         setProperties(x, y, width, height, background, border, layout);
     }
 
-    public void setProperties() {
-        setProperties(0, 0, 0, 0, semiDarkGrayBlue, semiDarkGray2Border, null);
+    public void setProperties(int x, int y, int width, int height) {
+        setProperties(x, y, width, height, semiDarkGrayBlue, semiDarkGray2Border, null);
     }
 
     public void setProperties(int x, int y, int width, int height, Color background, Border border) {

@@ -60,20 +60,21 @@ public class Resource {
     public final static Color ta6 = new Color(108, 142, 191);
     public final static Color ta7 = new Color(255, 89, 89);
 
-    //dark theme based on intellij idea
-    public final static Color semiDarkGrayBlue = new Color(50, 53, 55); //main background
+    //Dark Theme based on Intellij Idea
     public final static Color darkGray = new Color(49, 51, 53); //second background
     public final static Color megaDarkGray = new Color(43, 43, 43); //console background
-    public final static Color semiDarkGray2 = new Color(85, 85, 85);//console border
-    public final static Color darkWhite = new Color(187,187,187); //main color font
-    public final static Color semiDarkGray = new Color(114, 115, 122); //var names without use font
+    public final static Color semiDarkGrayBlue = new Color(50, 53, 55); //main background
+    public final static Color DTII1 = new Color(60, 63, 65);
+    public final static Color DTII2 = new Color(81, 81, 81); //mainToolbar bottom border
+    public final static Color DTII3 = new Color(85, 85, 85);//console border
     public final static Color gray = new Color(124, 123, 119); //comment font
+    public final static Color semiDarkGray = new Color(114, 115, 122); //var names without use font
     public final static Color grayPurple = new Color(152, 118, 168); //var names in use font
     public final static Color lightGrayGreen = new Color(106, 135, 89); //string font
     public final static Color greenGray = new Color(98,148, 82); //javadoc font
     public final static Color orangeGray = new Color(199,118,50); //reserve word font
     public final static Color lightBlueGray = new Color(104,150,186); //numbers font
-    public final static Color semiDarkGray3 = new Color(81, 81, 81); //mainToolbar bottom border
+    public final static Color darkWhite = new Color(187,187,187); //main color font
 // -----------------------------------------FONT------------------------------------------------------------------------
     //Windows standard
     public final static Font fontTitle = new Font("Arial", Font.BOLD, 28);
@@ -111,7 +112,7 @@ public class Resource {
     public final static Border blackBorderTransparent = BorderFactory.createLineBorder(blackTransparent, 2, false);
     public final static Border semiDarkGrayBlueBorder = BorderFactory.createLineBorder(semiDarkGrayBlue, 2, false);
     public final static Border grayBorder = BorderFactory.createLineBorder(gray, 2, false);
-    public final static Border semiDarkGray2Border = BorderFactory.createLineBorder(semiDarkGray2, 2, false);
+    public final static Border semiDarkGray2Border = BorderFactory.createLineBorder(DTII3, 2, false);
     public final static Border darkGrayBorder = BorderFactory.createLineBorder(darkGray, 2, false);
 
     //tema amigable

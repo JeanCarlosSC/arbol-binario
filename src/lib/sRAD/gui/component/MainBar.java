@@ -29,7 +29,7 @@ public class MainBar extends SPanel {
     private int y0 = 0;
 
     public MainBar(JFrame frame) {
-        this(frame, 1280, true, Theme.bg2, semiDarkGray3);
+        this(frame, 1280, true, Theme.bg2, DTII2);
     }
 
     public MainBar(JFrame frame, int screenWidth, Boolean move, Color backgroundColor, Color borderColor) {
@@ -96,7 +96,7 @@ public class MainBar extends SPanel {
     }
 
     public void setTitle(String title) {
-        lTitle.setProperties(350, 0, 570, 28, title, fontTitleMini, Theme.f, SwingConstants.CENTER);
+        lTitle.setProperties(350, 0, 570, 28, title, fontTitleMini, Theme.fmb, SwingConstants.CENTER);
     }
 
 }
