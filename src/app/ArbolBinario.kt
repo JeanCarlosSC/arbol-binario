@@ -12,6 +12,11 @@ class ArbolBinario {
             return
         }
 
+        if(estaEnArbol(raiz, valor)) {
+            JOptionPane.showMessageDialog(null, "El valor ya está en el árbol")
+            return
+        }
+
         var p = raiz
         var q: NodoBinario? = null
         val nodo = NodoBinario(valor)
@@ -26,25 +31,29 @@ class ArbolBinario {
                 q = p
                 p = p.derecha
             }
-            else {
-                JOptionPane.showMessageDialog(null, "El valor ya está en el árbol")
-                return
-            }
             nodo.y+=60
         }
         if(valor < q!!.valor) {
-            nodo.x = q.x-75
+            nodo.x = q.x-60
             q.izquierda = nodo
         }
         else {
-            nodo.x = q.x+75
+            nodo.x = q.x+60
             q.derecha = nodo
         }
     }
 
-    fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
+    private fun estaEnArbol(nodo: NodoBinario?, valor: Int): Boolean {
+        if(nodo == null)
+            return false
+        if (nodo.valor==valor)
+            return true
+        return estaEnArbol(nodo.izquierda, valor) || estaEnArbol(nodo.derecha, valor)
+    }
+
+    private fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
         if(nodo != null) {
-            nodo.x += 100
+            nodo.x += 60
             moverHaciaDerecha(nodo.derecha, true)
             if(izquierda)
                 moverHaciaDerecha(nodo.izquierda, true)
@@ -61,6 +70,4 @@ class NodoBinario(var valor: Int) {
 
     var x = 32
     var y = 32
-
-
 }

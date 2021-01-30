@@ -1,15 +1,31 @@
 package app
 
+import lib.sRAD.gui.component.Resource.*
+import lib.sRAD.gui.component.Theme
 import lib.sRAD.gui.component.VentanaEmergente
 import lib.sRAD.gui.sComponent.*
 import lib.sRAD.logic.isInt
+import java.awt.Graphics
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 import javax.swing.JOptionPane
 
 abstract class Grafica: SScrollPane() {
     val arbol = ArbolBinario()
-    private val pInterno = SPanel(0, 0, 706, 610)//Panel contenedor de la gráfica
+    val lineas = mutableListOf<MutableList<Int>>()//coordenadas de las lineas por dibujar
+
+    private val pInterno = object: SPanel(0, 0, 706, 610) {
+        override fun paint(g: Graphics?) {
+            super.paint(g)
+            g!!.color = lightBlueGray
+
+            if(lineas.isNotEmpty()){
+                for (i in lineas) {
+                    g!!.drawLine(i[0], i[1], i[2], i[3])
+                }
+            }
+        }
+    }//Panel contenedor de la gráfica
 
     init {
         pInterno.addMouseListener(object: MouseListener {
@@ -71,11 +87,12 @@ abstract class Grafica: SScrollPane() {
 
     fun actualizar() {
         pInterno.removeAll()
+        lineas.clear()
         if(!arbol.isEmpty()) {
             pInterno.setSize(706, pInterno.height)
             dibujar(arbol.raiz)
         }
-        repaint()
+        pInterno.repaint()
     }
 
     fun dibujar(nodo: NodoBinario?) {
@@ -87,13 +104,21 @@ abstract class Grafica: SScrollPane() {
             if(nodo.y+100>pInterno.height) {
                 pInterno.setSize(pInterno.width, nodo.y + 100)
             }
+
             //dibuja nodo
-            val panel  = SPanel(nodo.x, nodo.y, 64, 32)
+            val panel  = SPanel(nodo.x, nodo.y, 64, 32, mdb1, cyanBorder)
 
             val lValor = SLabel(4, 4, 60, 28, nodo.valor.toString())
             panel.add(lValor)
 
             pInterno.add(panel)
+
+            //guarda lineas
+            if(nodo.izquierda != null)
+                lineas.add(mutableListOf(nodo.x+32, nodo.y+32, nodo.izquierda!!.x+32, nodo.izquierda!!.y))
+
+            if(nodo.derecha != null)
+                lineas.add(mutableListOf(nodo.x+32, nodo.y+32, nodo.derecha!!.x+32, nodo.derecha!!.y))
 
             //dibuja nodos hijos
             dibujar(nodo.izquierda)

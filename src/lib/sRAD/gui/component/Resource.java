@@ -122,5 +122,6 @@ public class Resource {
 
     //special palette 1
     public final static Border darkOcherBorder = BorderFactory.createLineBorder(darkOcher, 2, false);
+    public final static Border cyanBorder = BorderFactory.createLineBorder(cyan, 2, false);
 
 }
