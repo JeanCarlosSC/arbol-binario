@@ -86,7 +86,30 @@ class ArbolBinario {
     }
 
     private fun eliminar(nodo: NodoBinario?, valor: String) {
-
+        //verifica cualquier nodo nulo
+        if (nodo == null)
+            return
+        //verifica si el valor corresponde a la raiz
+        if (raiz!!.valor==valor) {
+            raiz == null
+            return
+        }
+        //verifica el sub-árbol izquierdo
+        if (nodo.izquierda != null) {
+            if(nodo.izquierda!!.valor == valor) {
+                nodo.izquierda = null
+                return
+            }
+            eliminar(nodo.izquierda, valor)
+        }
+        //verifica el sub-árbol derecho
+        if (nodo.derecha != null) {
+            if (nodo.derecha!!.valor == valor) {
+                nodo.derecha = null
+                return
+            }
+            eliminar(nodo.derecha, valor)
+        }
     }
 
     private fun obtenerNodo(nodo: NodoBinario, valor: String): NodoBinario?{
