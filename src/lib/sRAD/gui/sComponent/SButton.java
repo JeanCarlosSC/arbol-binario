@@ -28,22 +28,22 @@ public class SButton extends JButton {
 
 //TEXT BUTTON
     public SButton(int x, int y, int width, int height, String text) {
-        this(x, y, width, height, text, handCursor, fontTitleMini, Theme.bbg, darkWhite, semiDarkGray2Border, CENTER, true, semiDarkGray);
+        this(x, y, width, height, text, handCursor, fontTitleMini, Theme.bbg, darkWhite, semiDarkGray2Border, semiDarkGray, semiDarkGray2Border);
     }
     public SButton(int x, int y, int width, int height, String text, Cursor cursor, Font font, Color background, Color foreground, Border border,
-                   int hAlignment, Boolean isSolid, Color backgroundEntered ) {
-        setProperties(x, y, width, height, text, cursor, font, background, foreground, border, hAlignment, isSolid, backgroundEntered);
+                   Color backgroundEntered, Border borderEntered) {
+        setProperties(x, y, width, height, text, cursor, font, background, foreground, border, backgroundEntered, borderEntered);
     }
 
     public void setProperties(int x, int y, int width, int height, String text, Cursor cursor, Font font, Color background, Color foreground,
-                              Border border, int hAlignment, Boolean isSolid, Color backgroundEntered) {
-        setProperties(x, y, width, height, cursor, background, isSolid);
-        this.setText(text);
-        this.setFont(font);
-        this.setForeground(foreground);
-        this.setBorder(border);
-        this.setHorizontalAlignment(hAlignment);
-        this.addMouseListener(new MouseListener() {
+                              Border border, Color backgroundEntered, Border borderEntered) {
+        setProperties(x, y, width, height, cursor, background);
+        setText(text);
+        setFont(font);
+        setForeground(foreground);
+        setBorder(border);
+        setHorizontalAlignment(SButton.CENTER);
+        addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {}
 
@@ -56,21 +56,24 @@ public class SButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 setBackground(backgroundEntered);
+                setBorder(borderEntered);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 setBackground(background);
+                setBorder(border);
             }
         });
     }
 
-    public void setProperties(int x, int y, int width, int height, Cursor cursor, Color background, Boolean isSolid) {
+    public void setProperties(int x, int y, int width, int height, Cursor cursor, Color background) {
         setLocation(x, y);
         setSize(width, height);
         setCursor(cursor);
         setBackground(background);
-        this.setContentAreaFilled(isSolid);
+        setContentAreaFilled(true);
+        setFocusPainted(false);
     }
 
     public void setProperties(int x, int y, Icon icon, Cursor cursor) {
@@ -79,6 +82,7 @@ public class SButton extends JButton {
         this.setBorder(null);
         this.setCursor(cursor);
         this.setFocusable(false);
+        setFocusPainted(false);
         if (icon != null) {
             this.setSize(icon.getIconWidth(), icon.getIconHeight());
             this.setIcon(icon);

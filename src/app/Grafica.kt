@@ -53,7 +53,7 @@ abstract class Grafica: SScrollPane() {
         setProperties(2, 2, 716, 620)
     }
 
-    private fun addVertice() {
+    fun addVertice() {
         abrirVentanaInsertar()
     }
 
@@ -86,7 +86,7 @@ abstract class Grafica: SScrollPane() {
         return
     }
 
-    private fun actualizar() {
+    open fun actualizar() {
         pInterno.removeAll()
         lineas.clear()
         if(!arbol.isEmpty()) {

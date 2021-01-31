@@ -1,5 +1,7 @@
 package app
 
+import lib.sRAD.gui.component.Resource.*
+import lib.sRAD.gui.sComponent.SButton
 import lib.sRAD.gui.sComponent.SFrame
 import lib.sRAD.gui.sComponent.SPanel
 
@@ -16,6 +18,10 @@ class App: SFrame() {
             override fun getCurrentFrame(): SFrame {
                 return this@App
             }
+            override fun actualizar() {
+                super.actualizar()
+                actualizarInformacion()
+            }
         }
         pIzquierdo.add(pGrafica)
 
@@ -24,10 +30,27 @@ class App: SFrame() {
 
         setMainBar("Arbol Binario")
         setProperties()
+
+        actualizarInformacion()
     }
 
     fun actualizarInformacion() {
+        //carga informacion general
 
+        //carga informacion particular
+
+        if(pGrafica.arbol.modo == ArbolBinario.MODO_ABECEDARIO) {
+            1
+        }
+        else {
+
+            val bInsertar = SButton(32, 32, 32, 32, "+", handCursor, fontTitle2, wp1, white, wp2Border, mustard, darkOcherBorder)
+            bInsertar.addActionListener { pGrafica.addVertice() }
+            bInsertar.toolTipText = "insertar valor en el árbol"
+            pInformativo.add(bInsertar)
+
+        }
+        repaint()
     }
 
 }

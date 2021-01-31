@@ -33,7 +33,7 @@ public class Resource {
     public final static Color mdb4 = new Color(78, 80, 107);
     public final static Color mdb5 = new Color(79, 84, 184);
 
-    //warning pallette
+    //warning paleta
     public final static Color wp1 = new Color(72, 140, 3);
     public final static Color wp2 = new Color(132, 217, 4);
     public final static Color wp3 = new Color(242, 203, 5);
@@ -132,5 +132,8 @@ public class Resource {
 
     //azul gris celeste análogo
     public final static Border agca4Border = BorderFactory.createLineBorder(agca4, 2, false);
+
+    //warning paleta
+    public final static Border wp2Border = BorderFactory.createLineBorder(wp2, 2, false);
 
 }

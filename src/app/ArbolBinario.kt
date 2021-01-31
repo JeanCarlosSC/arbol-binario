@@ -6,7 +6,19 @@ import kotlin.math.pow
 
 class ArbolBinario {
 
+    companion object {
+        const val MODO_NUMERICO = 0
+        const val MODO_ABECEDARIO = 1
+    }
+
+    var modo = MODO_NUMERICO //modo por defecto
     var raiz: NodoBinario? = null
+
+    fun establecerModo(modo: Int) {
+        if(modo == MODO_ABECEDARIO)
+            this.modo = MODO_ABECEDARIO
+        else this.modo = MODO_NUMERICO
+    }
 
     /**
      * Inserta valores numéricos en el árbol
