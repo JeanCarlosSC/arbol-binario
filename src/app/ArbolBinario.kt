@@ -2,6 +2,7 @@ package app
 
 import javax.swing.JOptionPane
 import kotlin.math.max
+import kotlin.math.pow
 
 class ArbolBinario {
 
@@ -198,7 +199,7 @@ class ArbolBinario {
     }
 
     fun completo(nodo: NodoBinario?): Boolean {
-        return false
+        return gordura(raiz) == 2.0.pow(altura(raiz) - 1.0).toInt()
     }
 
     fun numeroDeHojas(nodo: NodoBinario?): Int {
