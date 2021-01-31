@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableCellRenderer
  * @contributor Jean Carlos Santoya Cabrera */
 
 fun getCustomTable(): DefaultTableCellRenderer {
-    return getCustomTable(semiDarkGrayBlue)
+    return getCustomTable(DTII1)
 }
 
-fun getCustomTable(colorPrincipal: Color? = semiDarkGrayBlue, colorSecundario: Color? = semiDarkGrayBlue, colorSeleccion: Color? = mdb1,
+fun getCustomTable(colorPrincipal: Color? = DTII1, colorSecundario: Color? = DTII1, colorSeleccion: Color? = mdb1,
                    colorFuente: Color? = darkWhite, fuente: Font? = fontText
 ): DefaultTableCellRenderer {
     return object : DefaultTableCellRenderer() {
@@ -43,10 +43,10 @@ fun getCustomTable(colorPrincipal: Color? = semiDarkGrayBlue, colorSecundario: C
 }
 
 fun getCustomScroll(): BasicScrollBarUI{
-    return getCustomScroll(7, 10, semiDarkGrayBlue, gray, darkBlueGray)
+    return getCustomScroll(7, 10, DTII1, gray, darkBlueGray)
 }
 
-fun getCustomScroll(grosor: Int = 7, radio: Int = 10, colorFondo: Color? = semiDarkGrayBlue, colorBarraNormal: Color? = gray,
+fun getCustomScroll(grosor: Int = 7, radio: Int = 10, colorFondo: Color? = DTII1, colorBarraNormal: Color? = gray,
                     colorBarraArrastrada: Color? = darkBlueGray
 ): BasicScrollBarUI {
     return object : BasicScrollBarUI() {

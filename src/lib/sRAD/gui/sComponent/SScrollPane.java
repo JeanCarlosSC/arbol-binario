@@ -3,7 +3,7 @@ package lib.sRAD.gui.sComponent;
 import javax.swing.*;
 
 import static lib.sRAD.gui.component.Resource.semiDarkGray2Border;
-import static lib.sRAD.gui.component.Resource.semiDarkGrayBlue;
+import static lib.sRAD.gui.component.Resource.DTII1;
 import static lib.sRAD.gui.tool.AdvancedGraphBuilderKt.getCustomScroll;
 
 public class SScrollPane extends JScrollPane {
@@ -14,7 +14,7 @@ public class SScrollPane extends JScrollPane {
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         this.verticalScrollBar.setUI(getCustomScroll());
         this.horizontalScrollBar.setUI(getCustomScroll());
-        this.setBackground(semiDarkGrayBlue);
+        this.setBackground(DTII1);
         this.setBorder(semiDarkGray2Border);
     }
 

@@ -24,12 +24,13 @@ class ArbolBinario {
      * Inserta valores numéricos en el árbol
      */
     fun insertar(valor: Int) {
-
+        //si no hay árbol
         if(raiz == null) {
             raiz = NodoBinario("$valor")
             return
         }
 
+        //si ya está en el árbol
         if(estaEnArbol(raiz, "$valor")) {
             JOptionPane.showMessageDialog(null, "El valor ya está en el árbol")
             return
@@ -49,7 +50,6 @@ class ArbolBinario {
                 q = p
                 p = p.derecha
             }
-            nodo.y+=60
         }
         if(valor < q!!.valor.toInt()) {
             nodo.x = q.x-60
@@ -59,43 +59,102 @@ class ArbolBinario {
             nodo.x = q.x+60
             q.derecha = nodo
         }
+        nodo.y = q.y+60
     }
 
     /**
      * Retira valores numéricos o cadenas del árbol
      */
     fun retirar(valor: String) {
-        //El valor tiene que estar en el árbol o el árbol no se modificará
+        //El arbol tiene que existir y el valor tiene que estar en el árbol o el árbol no se modificará
         if(!estaEnArbol(raiz, valor)) {
             return
         }
-        val sucesorIn = obtenerSucesorIn(obtenerNodo(raiz!!, valor)!!)
 
-        //si no tiene sucesor, se elimina el nodo
-        if(sucesorIn == null) {
-            eliminar(raiz, valor)
+        //si no tiene hijos, se elimina el nodo
+        val nodo: NodoBinario =obtenerNodo(raiz!!, valor)!!
+        if(nodo.izquierda == null && nodo.derecha == null) {
+            eliminar(raiz!!, nodo.valor)
             return
         }
-        //si tiene sucesor
-        val sucesorInValor = sucesorIn.valor
-        if(sucesorIn.derecha!=null) {
-            sucesorIn.izquierda = sucesorIn.derecha!!.izquierda
-            sucesorIn.derecha = sucesorIn.derecha!!.derecha
-            sucesorIn.valor = sucesorIn.derecha!!.valor
+
+        //si no tiene sucesor
+        val sucesor = obtenerSucesorIn(nodo)
+        val antecesor = obtenerPariente(raiz!!, nodo)
+
+        if(sucesor==null) {
+            //si tiene antecesor
+            if(antecesor!=null) {
+                antecesor.derecha = nodo.izquierda
+            }
+            else {
+                raiz = nodo.izquierda
+            }
         }
-        else eliminar(raiz, sucesorInValor)
-        obtenerNodo(raiz!!, valor)!!.valor = sucesorInValor
+        else {
+            //si existe pariente
+            val pariente = obtenerPariente(raiz!!, sucesor)
+
+            if(pariente != null) {
+                //si el nodo es el pariente
+                if (pariente.valor == nodo.valor) {
+                     nodo.derecha = sucesor.derecha
+                }
+                else {
+                    //si el sucesor es antecesor
+                    if(antecesor!=null && sucesor.valor == antecesor!!.valor) {
+                        antecesor.izquierda = nodo.izquierda
+                    }
+                    else{
+                        //si el pariente es derecho
+                        if (pariente?.izquierda != null && pariente.izquierda!!.valor == sucesor.valor) {
+                            pariente.izquierda = sucesor.derecha
+                        } else {
+                            pariente!!.derecha = sucesor.derecha
+                        }
+                    }
+                }
+            }
+            else {
+                raiz!!.izquierda = nodo.izquierda
+            }
+            nodo.valor = sucesor.valor
+        }
+
+    }
+
+    private fun obtenerPariente(raiz: NodoBinario, nodo: NodoBinario): NodoBinario? {
+        //si el que se busca es la raiz
+        if (raiz.valor == nodo.valor)
+            return null
+        //si la raiz no tiene hijos
+        if (raiz.izquierda==null && raiz.derecha == null)
+            return null
+        //si la raiz dada es pariente del nodo
+        if (raiz.izquierda != null && raiz.izquierda!!.valor == nodo.valor || raiz.derecha!=null && raiz.derecha!!.valor == nodo.valor)
+            return raiz
+        //else, busca en los sub-árboles
+        if (raiz.izquierda != null && obtenerPariente(raiz.izquierda!!, nodo)!=null) {
+            return obtenerPariente(raiz.izquierda!!, nodo)
+        }
+        return obtenerPariente(raiz.derecha!!, nodo)
     }
 
     private fun obtenerSucesorIn(nodo: NodoBinario): NodoBinario? {
-        var sucesor: NodoBinario? = null
+        var sucesor: NodoBinario?
         if (nodo.derecha!=null) {
             sucesor = nodo.derecha
             while (sucesor!!.izquierda != null) {
                 sucesor = sucesor.izquierda
             }
+            return sucesor
         }
-        return sucesor
+        //si tiene pariente derecho
+        val pariente = obtenerPariente(raiz!!, nodo)
+        if (pariente?.izquierda != null && pariente.izquierda!!.valor == nodo.valor) {
+            return pariente
+        }
+        return null
     }
 
     private fun eliminar(nodo: NodoBinario?, valor: String) {
@@ -104,7 +163,7 @@ class ArbolBinario {
             return
         //verifica si el valor corresponde a la raiz
         if (raiz!!.valor==valor) {
-            raiz == null
+            raiz = null
             return
         }
         //verifica el sub-árbol izquierdo
@@ -136,6 +195,23 @@ class ArbolBinario {
             return obtenerNodo(nodo.derecha!!, valor)
         }
         return null
+    }
+
+    private fun moverHaciaArriba(nodo: NodoBinario?) {
+        if (nodo == null)
+            return
+        nodo.y -= 60
+        moverHaciaArriba(nodo.izquierda)
+        moverHaciaArriba(nodo.derecha)
+    }
+
+    private fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
+        if(nodo != null) {
+            nodo.x += 60
+            moverHaciaDerecha(nodo.derecha, true)
+            if(izquierda)
+                moverHaciaDerecha(nodo.izquierda, true)
+        }
     }
 
     fun inOrden(nodo: NodoBinario?): String {
@@ -202,7 +278,7 @@ class ArbolBinario {
     /**
      * Busca números o cadenas
      */
-    private fun estaEnArbol(nodo: NodoBinario?, valor: String): Boolean {
+    fun estaEnArbol(nodo: NodoBinario?, valor: String): Boolean {
         if(nodo == null)
             return false
         if (nodo.valor==valor)
@@ -216,20 +292,11 @@ class ArbolBinario {
 
     fun numeroDeHojas(nodo: NodoBinario?): Int {
         if (nodo!=null) {
-            if (nodo.izquierda == null && nodo.derecha == null)
-                return 1
-            else return numeroDeHojas(nodo.izquierda)+numeroDeHojas(nodo.derecha)
+            return if (nodo.izquierda == null && nodo.derecha == null)
+                1
+            else numeroDeHojas(nodo.izquierda)+numeroDeHojas(nodo.derecha)
         }
         return 0
-    }
-
-    private fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
-        if(nodo != null) {
-            nodo.x += 60
-            moverHaciaDerecha(nodo.derecha, true)
-            if(izquierda)
-                moverHaciaDerecha(nodo.izquierda, true)
-        }
     }
 
     fun isEmpty() = raiz == null

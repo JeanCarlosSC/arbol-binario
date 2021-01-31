@@ -5,7 +5,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 import static lib.sRAD.gui.component.Resource.semiDarkGray2Border;
-import static lib.sRAD.gui.component.Resource.semiDarkGrayBlue;
+import static lib.sRAD.gui.component.Resource.DTII1;
 
 public class SPanel extends JPanel {
 
@@ -14,7 +14,7 @@ public class SPanel extends JPanel {
     }
 
     public SPanel() {
-        this(0, 0, 0, 0, semiDarkGrayBlue, semiDarkGray2Border, null);
+        this(0, 0, 0, 0, DTII1, semiDarkGray2Border, null);
     }
 
     public SPanel(int x, int y, int width, int height, Color background, Border border) {
@@ -31,7 +31,7 @@ public class SPanel extends JPanel {
     }
 
     public void setProperties(int x, int y, int width, int height) {
-        setProperties(x, y, width, height, semiDarkGrayBlue, semiDarkGray2Border, null);
+        setProperties(x, y, width, height, DTII1, semiDarkGray2Border, null);
     }
 
     public void setProperties(int x, int y, int width, int height, Color background, Border border) {

@@ -70,10 +70,10 @@ public class Resource {
     //Dark Theme based on Intellij Idea
     public final static Color darkGray = new Color(49, 51, 53); //second background
     public final static Color megaDarkGray = new Color(43, 43, 43); //console background
-    public final static Color semiDarkGrayBlue = new Color(50, 53, 55); //main background
-    public final static Color DTII1 = new Color(60, 63, 65);
-    public final static Color DTII2 = new Color(81, 81, 81); //mainToolbar bottom border
-    public final static Color DTII3 = new Color(85, 85, 85);//console border
+    public final static Color DTII1 = new Color(50, 53, 55); //main background
+    public final static Color DTII2 = new Color(60, 63, 65);
+    public final static Color DTII3 = new Color(81, 81, 81); //mainToolbar bottom border
+    public final static Color DTII4 = new Color(85, 85, 85);//console border
     public final static Color gray = new Color(124, 123, 119); //comment font
     public final static Color semiDarkGray = new Color(114, 115, 122); //var names without use font
     public final static Color grayPurple = new Color(152, 118, 168); //var names in use font
@@ -117,9 +117,9 @@ public class Resource {
     public final static Border blackBorder = BorderFactory.createLineBorder(black, 2, false);
     public final static Border transparentBorder = BorderFactory.createLineBorder(transparent, 2, false);
     public final static Border blackBorderTransparent = BorderFactory.createLineBorder(blackTransparent, 2, false);
-    public final static Border semiDarkGrayBlueBorder = BorderFactory.createLineBorder(semiDarkGrayBlue, 2, false);
+    public final static Border semiDarkGrayBlueBorder = BorderFactory.createLineBorder(DTII1, 2, false);
     public final static Border grayBorder = BorderFactory.createLineBorder(gray, 2, false);
-    public final static Border semiDarkGray2Border = BorderFactory.createLineBorder(DTII3, 2, false);
+    public final static Border semiDarkGray2Border = BorderFactory.createLineBorder(DTII4, 2, false);
     public final static Border darkGrayBorder = BorderFactory.createLineBorder(darkGray, 2, false);
 
     //tema amigable

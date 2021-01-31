@@ -9,8 +9,12 @@ class App: SFrame() {
 
     private val pInformativo: SPanel
     private val pGrafica: Grafica
+    //objetos decorativos del panel informativo
+    private val bInsertar: SButton
+    private val bRetirar: SButton
 
     init {
+        //frame
         val pIzquierdo = SPanel(30, 50, 720, 650)
         add(pIzquierdo)
 
@@ -31,24 +35,31 @@ class App: SFrame() {
         setMainBar("Arbol Binario")
         setProperties()
 
+        //objetos decorativos del panel informativo
+        bInsertar = SButton(32, 32, 25, 25, "+", defaultCursor, fontTitle, null, wp1, null, DTII3, null)
+        bInsertar.addActionListener { pGrafica.addVertice() }
+        bInsertar.toolTipText = "Insertar valor en el árbol"
+
+        bRetirar = SButton(57, 32, 25, 25, "-", defaultCursor, fontTitle, null, ta7, null, DTII3, null)
+        bRetirar.addActionListener { pGrafica.removeVertice() }
+        bRetirar.toolTipText = "Retirar valor del árbol"
+
+        //actualizar
         actualizarInformacion()
     }
 
     fun actualizarInformacion() {
+        pInformativo.removeAll()
+
         //carga informacion general
+        pInformativo.add(bRetirar)
 
         //carga informacion particular
-
         if(pGrafica.arbol.modo == ArbolBinario.MODO_ABECEDARIO) {
             1
         }
         else {
-
-            val bInsertar = SButton(32, 32, 32, 32, "+", handCursor, fontTitle2, wp1, white, wp2Border, mustard, darkOcherBorder)
-            bInsertar.addActionListener { pGrafica.addVertice() }
-            bInsertar.toolTipText = "insertar valor en el árbol"
             pInformativo.add(bInsertar)
-
         }
         repaint()
     }

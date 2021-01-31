@@ -29,7 +29,7 @@ public class MainBar extends SPanel {
     private int y0 = 0;
 
     public MainBar(JFrame frame) {
-        this(frame, 1280, true, Theme.bg2, DTII2);
+        this(frame, 1280, true, Theme.bg2, DTII3);
     }
 
     public MainBar(JFrame frame, int screenWidth, Boolean move, Color backgroundColor, Color borderColor) {
