@@ -114,10 +114,10 @@ abstract class Grafica: SScrollPane() {
 
             //guarda lineas
             if(nodo.izquierda != null)
-                lineas.add(mutableListOf(nodo.x+32, nodo.y+32, nodo.izquierda!!.x+32, nodo.izquierda!!.y))
+                lineas.add(mutableListOf(nodo.x+22, nodo.y+32, nodo.izquierda!!.x+32, nodo.izquierda!!.y))
 
             if(nodo.derecha != null)
-                lineas.add(mutableListOf(nodo.x+32, nodo.y+32, nodo.derecha!!.x+32, nodo.derecha!!.y))
+                lineas.add(mutableListOf(nodo.x+42, nodo.y+32, nodo.derecha!!.x+32, nodo.derecha!!.y))
 
             //dibuja nodos hijos
             dibujar(nodo.izquierda)
