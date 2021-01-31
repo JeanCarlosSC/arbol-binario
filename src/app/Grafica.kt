@@ -4,6 +4,7 @@ import lib.sRAD.gui.component.Resource.*
 import lib.sRAD.gui.component.VentanaEmergente
 import lib.sRAD.gui.sComponent.*
 import lib.sRAD.logic.isInt
+import java.awt.Color
 import java.awt.Graphics
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
@@ -16,7 +17,7 @@ abstract class Grafica: SScrollPane() {
     private val pInterno = object: SPanel(0, 0, 706, 610) {
         override fun paint(g: Graphics?) {
             super.paint(g)
-            g!!.color = lightBlueGray
+            g!!.color = wp2
 
             if(lineas.isNotEmpty()){
                 for (i in lineas) {
@@ -45,6 +46,7 @@ abstract class Grafica: SScrollPane() {
             }
 
         })
+        pInterno.background = DTII1
         pInterno.border = null
         add(pInterno)
         setViewportView(pInterno)
@@ -105,9 +107,11 @@ abstract class Grafica: SScrollPane() {
             }
 
             //dibuja nodo
-            val panel  = SPanel(nodo.x, nodo.y, 64, 32, mdb1, cyanBorder)
+            val panel  = SPanel(nodo.x, nodo.y, 64, 32, agca1, agca4Border)
 
-            val lValor = SLabel(4, 4, 60, 28, nodo.valor.toString())
+            val lValor = SLabel(2, 2, 58, 30, nodo.valor)
+            lValor.horizontalAlignment = SLabel.CENTER
+            lValor.foreground = white
             panel.add(lValor)
 
             pInterno.add(panel)

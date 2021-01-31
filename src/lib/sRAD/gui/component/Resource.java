@@ -19,6 +19,13 @@ public class Resource {
     public final static Color gcc4 = new Color(179, 84, 167);
     public final static Color gcc5 = new Color(255, 171, 245);
 
+    //azul gris celeste análogo
+    public final static Color agca1 = new Color(74, 75, 246);
+    public final static Color agca2 = new Color(63, 104, 212);
+    public final static Color agca3 = new Color(82, 164, 235);
+    public final static Color agca4 = new Color(63, 181, 212);
+    public final static Color agca5 = new Color(74, 246, 235);
+
     //monochrome dark blue
     public final static Color mdb1 = new Color(46, 49, 107);
     public final static Color mdb2 = new Color(174, 177, 238);
@@ -122,6 +129,8 @@ public class Resource {
 
     //special palette 1
     public final static Border darkOcherBorder = BorderFactory.createLineBorder(darkOcher, 2, false);
-    public final static Border cyanBorder = BorderFactory.createLineBorder(cyan, 2, false);
+
+    //azul gris celeste análogo
+    public final static Border agca4Border = BorderFactory.createLineBorder(agca4, 2, false);
 
 }
