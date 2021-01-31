@@ -75,7 +75,14 @@ class ArbolBinario {
     }
 
     private fun obtenerSucesorIn(nodo: NodoBinario): NodoBinario? {
-        return null
+        var sucesor: NodoBinario? = null
+        if (nodo.derecha!=null) {
+            sucesor = nodo.derecha
+            while (sucesor!!.izquierda != null) {
+                sucesor = sucesor.izquierda
+            }
+        }
+        return sucesor
     }
 
     private fun eliminar(nodo: NodoBinario?, valor: String) {
