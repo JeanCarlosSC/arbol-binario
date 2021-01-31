@@ -166,8 +166,18 @@ class ArbolBinario {
         return niveles
     }
 
-    fun gordura(nodo: NodoBinario?): String {
-        return ""
+    fun gordura(nodo: NodoBinario?): Int {
+        //arbol vacío
+        if (nodo == null)
+            return 0
+        //si no tiene hijos
+        if (nodo.izquierda == null && nodo.derecha == null)
+            return 1
+        //si tiene hijos
+        var cantidadHijos = 0
+        if(nodo.izquierda!=null) cantidadHijos++
+        if(nodo.derecha!=null) cantidadHijos++
+        return max(cantidadHijos, gordura(nodo.izquierda)+gordura(nodo.derecha))
     }
 
     fun altura(nodo: NodoBinario?): Int {
@@ -191,7 +201,12 @@ class ArbolBinario {
         return false
     }
 
-    fun numeroDeHojas(): Int {
+    fun numeroDeHojas(nodo: NodoBinario?): Int {
+        if (nodo!=null) {
+            if (nodo.izquierda == null && nodo.derecha == null)
+                return 1
+            else return numeroDeHojas(nodo.izquierda)+numeroDeHojas(nodo.derecha)
+        }
         return 0
     }
 
