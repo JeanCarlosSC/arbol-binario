@@ -14,10 +14,9 @@ class ArbolBinario {
     var modo = MODO_NUMERICO //modo por defecto
     var raiz: NodoBinario? = null
 
-    fun establecerModo(modo: Int) {
-        if(modo == MODO_ABECEDARIO)
-            this.modo = MODO_ABECEDARIO
-        else this.modo = MODO_NUMERICO
+    fun cambiarModo() {
+        modo = if(modo == MODO_ABECEDARIO) MODO_NUMERICO else MODO_ABECEDARIO
+        raiz = null
     }
 
     /**
@@ -102,15 +101,15 @@ class ArbolBinario {
                 }
                 else {
                     //si el sucesor es antecesor
-                    if(antecesor!=null && sucesor.valor == antecesor!!.valor) {
+                    if(antecesor!=null && sucesor.valor == antecesor.valor) {
                         antecesor.izquierda = nodo.izquierda
                     }
                     else{
                         //si el pariente es derecho
-                        if (pariente?.izquierda != null && pariente.izquierda!!.valor == sucesor.valor) {
+                        if (pariente.izquierda != null && pariente.izquierda!!.valor == sucesor.valor) {
                             pariente.izquierda = sucesor.derecha
                         } else {
-                            pariente!!.derecha = sucesor.derecha
+                            pariente.derecha = sucesor.derecha
                         }
                     }
                 }
@@ -286,7 +285,7 @@ class ArbolBinario {
         return estaEnArbol(nodo.izquierda, valor) || estaEnArbol(nodo.derecha, valor)
     }
 
-    fun completo(nodo: NodoBinario?): Boolean {
+    fun completo(): Boolean {
         return gordura(raiz) == 2.0.pow(altura(raiz) - 1.0).toInt()
     }
 

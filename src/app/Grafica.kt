@@ -112,7 +112,7 @@ abstract class Grafica: SScrollPane() {
         pInterno.removeAll()
         lineas.clear()
         if(!arbol.isEmpty()) {
-            pInterno.setSize(706, pInterno.height)
+            pInterno.setSize(706, 610)
             dibujar(arbol.raiz)
         }
         pInterno.repaint()
