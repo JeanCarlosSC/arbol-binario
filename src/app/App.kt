@@ -2,14 +2,20 @@ package app
 
 import lib.sRAD.gui.component.Resource.*
 import lib.sRAD.gui.sComponent.*
+import lib.sRAD.logic.isInt
+import java.util.*
+import javax.swing.JOptionPane
 
-val PRE_ORDEN = 0
-val POS_ORDEN = 1
+const val PRE_ORDEN = 0
+const val POS_ORDEN = 1
 
 class App: SFrame() {
 
     private val pInformativo: SPanel
+    //pIzquierdo
+    private val pIzquierdo: SPanel
     private val pGrafica: Grafica
+    private val tfIngresar: STextField
     //objetos decorativos del panel informativo
     private val bInsertar: SButton
     private val bRetirar: SButton
@@ -39,9 +45,12 @@ class App: SFrame() {
     private val bConstruir: SButton //boton para re-construir
 
     init {
-        //frame
-        val pIzquierdo = SPanel(30, 50, 720, 650)
+        //frame y pIzquierdo
+        pIzquierdo = SPanel(30, 50, 720, 650)
         add(pIzquierdo)
+
+        tfIngresar = STextField(2, 622, 716, 28)
+        tfIngresar.addActionListener { insertar() }
 
         pGrafica = object: Grafica() {
             override fun getCurrentFrame(): SFrame {
@@ -127,7 +136,7 @@ class App: SFrame() {
         bModo = SButton(132, 32, 25, 25, "M", defaultCursor, fontTitle, null, wp4, null, DTII3, null)
         bModo.addActionListener {
             pGrafica.arbol.cambiarModo()
-            actualizarInformacion()
+            pGrafica.actualizar()
         }
         bModo.toolTipText = "Cambiar de modo"
 
@@ -186,6 +195,10 @@ class App: SFrame() {
 
         //carga informacion particular
         if(arbol.modo == ArbolBinario.MODO_ABECEDARIO) {
+            //pIzquierdo
+            pIzquierdo.remove(tfIngresar)
+            pIzquierdo.setSize(720, 624)
+            //pInformativo
             pInformativo.add(lInOrden)
             pInformativo.add(tfInOrden)
 
@@ -197,9 +210,30 @@ class App: SFrame() {
             pInformativo.add(bConstruir)
         }
         else {
+            //pIzquierdo
+            pIzquierdo.add(tfIngresar)
+            pIzquierdo.setSize(720, 652)
+            //pInformativo
             pInformativo.add(bInsertar)
         }
         repaint()
+    }
+
+    private fun insertar() {
+        pGrafica.arbol.raiz= null
+        val tokens = StringTokenizer(tfIngresar.text)
+        //ingresa los valores que sean válidos
+        while (tokens.hasMoreTokens()) {
+            val token = tokens.nextToken()
+            if (token.isInt()) {
+                pGrafica.arbol.insertar(token.toInt())
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "El valor $token no se insertará ya que no es un entero válido", "Error",
+                    JOptionPane.ERROR_MESSAGE)
+            }
+        }
+        pGrafica.actualizar()
     }
 
     private fun construir() {

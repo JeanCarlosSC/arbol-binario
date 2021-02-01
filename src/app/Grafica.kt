@@ -27,24 +27,6 @@ abstract class Grafica: SScrollPane() {
     }//Panel contenedor de la gráfica
 
     init {
-        pInterno.addMouseListener(object: MouseListener {
-            override fun mouseClicked(e: MouseEvent?) {
-                addVertice()
-            }
-
-            override fun mousePressed(e: MouseEvent?) {
-            }
-
-            override fun mouseReleased(e: MouseEvent?) {
-            }
-
-            override fun mouseEntered(e: MouseEvent?) {
-            }
-
-            override fun mouseExited(e: MouseEvent?) {
-            }
-
-        })
         pInterno.background = DTII2
         pInterno.border = null
         add(pInterno)

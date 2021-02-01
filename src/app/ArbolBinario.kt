@@ -31,7 +31,7 @@ class ArbolBinario {
 
         //si ya está en el árbol
         if(estaEnArbol(raiz, "$valor")) {
-            JOptionPane.showMessageDialog(null, "El valor ya está en el árbol")
+            JOptionPane.showMessageDialog(null, "El valor $valor ya está en el árbol")
             return
         }
 
