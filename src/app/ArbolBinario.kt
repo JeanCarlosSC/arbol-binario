@@ -216,21 +216,21 @@ class ArbolBinario {
 
     fun inOrden(nodo: NodoBinario?): String {
         if(nodo!=null) {
-            return "${inOrden(nodo.izquierda)} ${nodo.valor} ${inOrden(nodo.derecha)}"
+            return "${inOrden(nodo.izquierda)}${nodo.valor} ${inOrden(nodo.derecha)}"
         }
         return ""
     }
 
     fun preOrden(nodo: NodoBinario?): String {
         if(nodo!=null) {
-            return "${nodo.valor} ${preOrden(nodo.izquierda)} ${preOrden(nodo.derecha)}"
+            return "${nodo.valor} ${preOrden(nodo.izquierda)}${preOrden(nodo.derecha)}"
         }
         return ""
     }
 
     fun posOrden(nodo: NodoBinario?): String {
         if(nodo!=null) {
-            return "${posOrden(nodo.izquierda)} ${posOrden(nodo.derecha)} ${nodo.valor}"
+            return "${posOrden(nodo.izquierda)}${posOrden(nodo.derecha)} ${nodo.valor}"
         }
         return ""
     }
