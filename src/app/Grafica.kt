@@ -91,6 +91,7 @@ abstract class Grafica: SScrollPane() {
     }
 
     open fun actualizar() {
+        arbol.organizar()
         pInterno.removeAll()
         lineas.clear()
         if(!arbol.isEmpty()) {

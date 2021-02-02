@@ -3,6 +3,7 @@ package app
 import lib.sRAD.gui.component.Resource.*
 import lib.sRAD.gui.sComponent.*
 import lib.sRAD.logic.isInt
+import lib.sRAD.logic.toMutableList
 import java.util.*
 import javax.swing.JOptionPane
 
@@ -237,7 +238,19 @@ class App: SFrame() {
     }
 
     private fun construir() {
-
+        pGrafica.arbol.raiz = null
+        try {
+            val nodo = if (orden == PRE_ORDEN) pGrafica.arbol.construirInPre(tfInOrden.text, tfSegundoOrden.text)
+                else pGrafica.arbol.construirInPos(tfInOrden.text, tfSegundoOrden.text)
+            if (getSize(nodo) != tfInOrden.text.toMutableList().size) {
+                throw Exception("resultado inválido")
+            }
+        }
+        catch (e: Exception) {
+            JOptionPane.showMessageDialog(null, "valores inválidos", "Error", JOptionPane.ERROR_MESSAGE)
+            pGrafica.arbol.raiz = null
+        }
+        pGrafica.actualizar()
     }
 
 }

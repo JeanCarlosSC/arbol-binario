@@ -1,5 +1,6 @@
 package app
 
+import lib.sRAD.logic.toMutableList
 import javax.swing.JOptionPane
 import kotlin.math.max
 import kotlin.math.pow
@@ -13,6 +14,7 @@ class ArbolBinario {
 
     var modo = MODO_NUMERICO //modo por defecto
     var raiz: NodoBinario? = null
+    var minimo = 32
 
     fun cambiarModo() {
         modo = if(modo == MODO_ABECEDARIO) MODO_NUMERICO else MODO_ABECEDARIO
@@ -41,7 +43,6 @@ class ArbolBinario {
 
         while (p != null) {
             if(valor < p.valor.toInt()) {
-                moverHaciaDerecha(p, false)
                 q = p
                 p = p.izquierda
             }
@@ -122,7 +123,10 @@ class ArbolBinario {
 
     }
 
-    private fun obtenerPariente(raiz: NodoBinario, nodo: NodoBinario): NodoBinario? {
+    private fun obtenerPariente(raiz: NodoBinario?, nodo: NodoBinario): NodoBinario? {
+        //si la raiz es nula
+        if (raiz == null)
+            return null
         //si el que se busca es la raiz
         if (raiz.valor == nodo.valor)
             return null
@@ -134,9 +138,9 @@ class ArbolBinario {
             return raiz
         //else, busca en los sub-árboles
         if (raiz.izquierda != null && obtenerPariente(raiz.izquierda!!, nodo)!=null) {
-            return obtenerPariente(raiz.izquierda!!, nodo)
+            return obtenerPariente(raiz.izquierda, nodo)
         }
-        return obtenerPariente(raiz.derecha!!, nodo)
+        return obtenerPariente(raiz.derecha, nodo)
     }
 
     private fun obtenerSucesorIn(nodo: NodoBinario): NodoBinario? {
@@ -196,21 +200,68 @@ class ArbolBinario {
         return null
     }
 
-    private fun moverHaciaArriba(nodo: NodoBinario?) {
-        if (nodo == null)
-            return
-        nodo.y -= 60
-        moverHaciaArriba(nodo.izquierda)
-        moverHaciaArriba(nodo.derecha)
+    private fun moverHaciaDerecha(nodo: NodoBinario?) {
+        if(nodo != null) {
+            nodo.x += (minimo-32)*-1
+            moverHaciaDerecha(nodo.izquierda)
+            moverHaciaDerecha(nodo.derecha)
+        }
     }
 
-    private fun moverHaciaDerecha(nodo: NodoBinario?, izquierda: Boolean) {
-        if(nodo != null) {
-            nodo.x += 60
-            moverHaciaDerecha(nodo.derecha, true)
-            if(izquierda)
-                moverHaciaDerecha(nodo.izquierda, true)
+    fun organizar() {
+        if (altura(raiz)<2)
+            return
+        minimo = 32
+        reestablecerCoordenadas(raiz)
+        moverNodo(raiz, 32, 32)
+        moverHaciaDerecha(raiz)
+    }
+
+    private fun reestablecerCoordenadas(nodo: NodoBinario?) {
+        if(nodo == null)
+            return
+        nodo.x = 0
+        nodo.y = 0
+        reestablecerCoordenadas(nodo.izquierda)
+        reestablecerCoordenadas(nodo.derecha)
+    }
+
+    private fun moverNodo(nodo: NodoBinario?, x: Int, y: Int) {
+        if (nodo == null)
+            return
+        if (x < minimo) {
+            minimo = x
         }
+        if(isNotPosFree(raiz!!, x, y)) {
+            var pariente = obtenerPariente(raiz!!, nodo)
+            val xi = pariente!!.x
+            val yi = pariente.y+60
+            while (pariente != null) {
+                pariente.x+=45
+                pariente = obtenerPariente(raiz!!, pariente)
+            }
+            moverNodo(nodo, xi, yi)
+        }
+        else {
+            nodo.x = x
+            nodo.y = y
+            if (nodo.izquierda != null)
+                moverNodo(nodo.izquierda, nodo.x - 45, nodo.y + 60)
+            if (nodo.derecha != null) {
+                moverNodo(nodo.derecha, nodo.x + 45, nodo.y + 60)
+                if (nodo.izquierda != null) {
+                    nodo.x = (nodo.izquierda!!.x + nodo.derecha!!.x)/2
+                }
+            }
+        }
+    }
+
+    private fun isNotPosFree(nodo: NodoBinario?, x: Int, y: Int): Boolean {
+        if (nodo == null)
+            return false
+        if ((x >= nodo.x && x <=nodo.x +60) && nodo.y == y)
+            return true
+        return isNotPosFree(nodo.izquierda, x, y) || isNotPosFree(nodo.derecha, x, y)
     }
 
     fun inOrden(nodo: NodoBinario?): String {
@@ -300,6 +351,124 @@ class ArbolBinario {
 
     fun isEmpty() = raiz == null
 
+    fun construirInPre(inOrden: String, preOrden: String): NodoBinario? {
+        val mListIn = inOrden.toMutableList()
+        val mListPre = preOrden.toMutableList()
+
+        //deben tener al menos un elemento
+        if(mListIn.isEmpty())
+            return null
+
+        //deben tener la misma cantidad de elementos inicialmente
+        if(mListIn.size != mListPre.size) {
+            if(raiz == null)
+                JOptionPane.showMessageDialog(null, "Los datos ingresados no tienen la misma cantidad de elementos", "Error",
+                    JOptionPane.ERROR_MESSAGE)
+            return null
+        }
+
+        //calcula valores para el sub-árbol izquierdo y derecho
+        var inOrdenIzquierdo = ""
+        var inOrdenDerecho = ""
+        var preOrdenIzquierdo = ""
+        var preOrdenDerecho = ""
+        var bool = false
+
+        for (i in mListIn) {
+            if (mListPre.isNotEmpty() && i == mListPre[0]) {
+                bool = true
+                continue
+            }
+             if(bool)
+                 inOrdenDerecho += "$i "
+            else inOrdenIzquierdo += "$i "
+        }
+
+        val inIzquierdo = inOrdenIzquierdo.toMutableList()
+        for (i in mListPre) {
+            if(i != mListPre[0]) {
+                if (inIzquierdo.size == preOrdenIzquierdo.toMutableList().size) {
+                    bool = false
+                }
+                if (bool)
+                    preOrdenIzquierdo += "$i "
+                else preOrdenDerecho += "$i "
+            }
+        }
+
+        //crea el nodo
+        val nodo = NodoBinario(mListPre[0])
+
+        //si no hay árbol
+        if(raiz == null)
+            raiz = nodo
+
+        //llamada recursiva
+        nodo.izquierda = construirInPre(inOrdenIzquierdo, preOrdenIzquierdo)
+        nodo.derecha = construirInPre(inOrdenDerecho, preOrdenDerecho)
+
+        return nodo
+    }
+
+    fun construirInPos(inOrden: String, posOrden: String): NodoBinario? {
+        val mListIn = inOrden.toMutableList()
+        val mListPos = posOrden.toMutableList()
+
+        //deben tener al menos un elemento
+        if(mListIn.isEmpty())
+            return null
+
+        //deben tener la misma cantidad de elementos
+        if(mListIn.size != mListPos.size) {
+            if (raiz == null)
+                JOptionPane.showMessageDialog(null, "Los datos ingresados no tienen la misma cantidad de elementos", "Error",
+                    JOptionPane.ERROR_MESSAGE)
+            return null
+        }
+
+        //calcula valores para el sub-árbol izquierdo y derecho
+        var inOrdenIzquierdo = ""
+        var inOrdenDerecho = ""
+        var posOrdenIzquierdo = ""
+        var posOrdenDerecho = ""
+        var bool = false
+
+        for (i in mListIn) {
+            if (i == mListPos.last()) {
+                bool = true
+                continue
+            }
+            if(bool)
+                inOrdenDerecho += "$i "
+            else inOrdenIzquierdo += "$i "
+        }
+
+        val inIzquierdo = inOrdenIzquierdo.toMutableList()
+        for (i in mListPos) {
+            if(i != mListPos.last()) {
+                if (inIzquierdo.size == posOrdenIzquierdo.toMutableList().size) {
+                    bool = false
+                }
+                if (bool)
+                    posOrdenIzquierdo += "$i "
+                else posOrdenDerecho += "$i "
+            }
+        }
+
+        //crea el nodo
+        val nodo = NodoBinario(mListPos.last())
+
+        //si no hay árbol
+        if(raiz == null)
+            raiz = nodo
+
+        //llamada recursiva
+        nodo.izquierda = construirInPos(inOrdenIzquierdo, posOrdenIzquierdo)
+        nodo.derecha = construirInPos(inOrdenDerecho, posOrdenDerecho)
+
+        return nodo
+    }
+
 }
 
 class NodoBinario(var valor: String) {
@@ -308,4 +477,10 @@ class NodoBinario(var valor: String) {
 
     var x = 32
     var y = 32
+}
+
+fun getSize(nodo: NodoBinario?):Int {
+    if (nodo == null)
+        return 0
+    return getSize(nodo.izquierda)+getSize(nodo.derecha)+1
 }
